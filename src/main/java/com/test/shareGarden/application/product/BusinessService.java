@@ -1,5 +1,6 @@
 package com.test.shareGarden.application.product;
 
+import com.test.shareGarden.domain.product.ProductService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,5 +22,9 @@ public class BusinessService {
 
     public List<ProductInfo> findProductsByCategory(Integer categoryId) {
         return productService.findProductsByCategory(categoryId);
+    }
+
+    public List<ProductInfo> findProductsByRegion(Integer regionId) {
+        return productService.findProductsByRegion(regionId);
     }
 }

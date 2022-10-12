@@ -18,14 +18,14 @@ public class LoginController {
 
 
     @PostMapping("/register")
-    @Operation(summary = "Uue kasutaja lisamine")
+    @Operation(summary = "Sign up new user")
     //Saadan päringu "firstName", "lastName", "userName", "password", "email" ja "mobile". Vastuseks saan "userId" ja "roleId"
     public RegisterResponse registerNewUser(@RequestBody RegisterRequest request) {
         return loginService.registerNewUser(request);
     }
 
     @PostMapping("/login")
-    @Operation(summary = "Sisse logimine")
+    @Operation(summary = "Admin and user login")
     //Saadan päringu "userName" ja "password". Vastuseks saan "userId" ja "roleId"
     public LogInResponse logIn(@RequestBody LogInRequest request) {
         return loginService.logIn(request);

@@ -1,12 +1,13 @@
-package com.test.shareGarden.application.product;
+package com.test.shareGarden.domain.product;
 
+import com.test.shareGarden.application.product.ProductInfo;
+import com.test.shareGarden.application.product.ProductMapper;
 import com.test.shareGarden.domain.product.Product;
 import com.test.shareGarden.domain.product.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.test.shareGarden.application.Status.AVAILABLE;
@@ -32,6 +33,11 @@ public class ProductService {
 
     public List<ProductInfo> findProductsByCategory(Integer categoryId) {
         List<Product> products = productRepository.findByCategoryId(categoryId, AVAILABLE);
+        return productMapper.productsToProductInfos(products);
+    }
+
+    public List<ProductInfo> findProductsByRegion(Integer regionId) {
+        List<Product> products = productRepository.findByRegionId(regionId, AVAILABLE);
         return productMapper.productsToProductInfos(products);
     }
 }

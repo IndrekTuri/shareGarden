@@ -34,6 +34,12 @@ public class ProductController {
         return businessService.findProductsByCategory(categoryId);
     }
 
+    @GetMapping("/region")
+    @Operation(summary = "Find products by regionId ")
+    public List<ProductInfo> findProductsByRegion(Integer regionId) {
+        return businessService.findProductsByRegion(regionId);
+    }
+
 //    // TODO: 12.10.2022 findByCategoryId
 //    // TODO: 12.10.2022 findByUserId
 //    // TODO: 12.10.2022 findByBuyerId
