@@ -1,9 +1,6 @@
 package com.test.shareGarden.domain.product;
 
 import com.test.shareGarden.application.product.ProductInfo;
-import com.test.shareGarden.application.product.ProductMapper;
-import com.test.shareGarden.domain.product.Product;
-import com.test.shareGarden.domain.product.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -40,4 +37,10 @@ public class ProductService {
         List<Product> products = productRepository.findByRegionId(regionId, AVAILABLE);
         return productMapper.productsToProductInfos(products);
     }
+
+    public List<ProductInfo> findProductByUser(Integer userId) {
+        List<Product> products = productRepository.findByUserId(userId);
+        return productMapper.productsToProductInfos(products);
+    }
+
 }

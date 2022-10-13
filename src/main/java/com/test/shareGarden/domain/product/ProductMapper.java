@@ -1,5 +1,6 @@
-package com.test.shareGarden.application.product;
+package com.test.shareGarden.domain.product;
 
+import com.test.shareGarden.application.product.ProductInfo;
 import com.test.shareGarden.domain.product.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -14,7 +15,7 @@ public interface ProductMapper {
 
     @Mapping(source = "id", target = "productId")
     @Mapping(source = "name", target = "productName")
-    @Mapping(source = "quantity", target = "quantity")
+//    @Mapping(source = "quantity", target = "quantity")
     @Mapping(source = "measureUnit.unit", target = "measureUnit")
     @Mapping(source = "location.region.county", target = "regionName")
 //    @Mapping(source = "imageBase64", target = "imageBase64", qualifiedByName = "byteArrayToString")
