@@ -27,4 +27,10 @@ public class DropdownController {
     public List<RegionDto> getAllRegions() {
         return dropdownService.getAllRegions();
     }
+
+    @GetMapping("/units")
+    @Operation(summary = "Get all measure units id's and names")
+    public List<MeasureUnitDto> getAllMeasureUnits() {
+        return dropdownService.getAllMeasureUnits();
+    }
 }
