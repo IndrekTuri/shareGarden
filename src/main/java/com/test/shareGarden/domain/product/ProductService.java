@@ -43,4 +43,8 @@ public class ProductService {
         return productMapper.productsToProductInfos(products);
     }
 
+    public List<ProductInfo> findProductByKeyword(String keyword) {
+        List<Product> products = productRepository.findByKeyword(keyword, AVAILABLE);
+        return productMapper.productsToProductInfos(products);
+    }
 }

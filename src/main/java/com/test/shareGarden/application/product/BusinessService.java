@@ -32,7 +32,11 @@ public class BusinessService {
         return productService.findProductByUser(userId);
     }
 
-    public List<ProductInfo> findProductByBuyer(Integer buyerId) {
-        return productService.findProductByBuyer(buyerId);
+//    public List<ProductInfo> findProductByBuyer(Integer buyerId) {
+//        return productService.findProductByBuyer(buyerId);
+//    }
+
+    public List<ProductInfo> findProductByKeyword(String keyword) {
+        return productService.findProductByKeyword(keyword);
     }
 }

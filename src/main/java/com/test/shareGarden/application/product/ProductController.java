@@ -46,15 +46,20 @@ public class ProductController {
         return businessService.findProductByUser(userId);
     }
 
-    @GetMapping("/buyer")
-    @Operation(summary = "Find products by buyerId")
-    public List<ProductInfo> findProductByBuyer(Integer buyerId) {
-        return businessService.findProductByBuyer(buyerId);
-    }
+//    @GetMapping("/buyer")
+//    @Operation(summary = "Find products by buyerId")
+//    public List<ProductInfo> findProductByBuyer(Integer buyerId) {
+//        return businessService.findProductByBuyer(buyerId);
+//    }
 
-//    // TODO: 12.10.2022 findByCategoryId
-//    // TODO: 12.10.2022 findByUserId
-//    // TODO: 12.10.2022 findByBuyerId
-//    // TODO: 12.10.2022 findByRegionId
-//    // TODO: 12.10.2022 findByKeyword
+
+//     TODO: 12.10.2022 findByKeyword
+//     TODO: 12.10.2022 findByBuyerId
+
+    @GetMapping("/keyword")
+    @Operation(summary = "Find product by keyword")
+    public List<ProductInfo> findProductByKeyword(String keyword) {
+        return businessService.findProductByKeyword(keyword);
+
+    }
 }
