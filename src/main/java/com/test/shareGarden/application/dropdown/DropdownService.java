@@ -2,6 +2,7 @@ package com.test.shareGarden.application.dropdown;
 
 import com.test.shareGarden.domain.product.category.CategoryService;
 import com.test.shareGarden.domain.product.measureUnit.MeasureUnitService;
+import com.test.shareGarden.domain.user.location.LocationService;
 import com.test.shareGarden.domain.user.region.RegionService;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,9 @@ public class DropdownService {
     @Resource
     private MeasureUnitService measureUnitService;
 
+    @Resource
+    private LocationService locationService;
+
 
 
     public List<CategoryDto> getAllCategories() {
@@ -33,5 +37,9 @@ public class DropdownService {
     public List<MeasureUnitDto> getAllMeasureUnits() {
         return measureUnitService.getAllMeasureUnits();
 
+    }
+
+    public List<LocationDto> getAllLocationsByUserId(Integer userId) {
+        return locationService.getAllLocationsByUserId(userId);
     }
 }

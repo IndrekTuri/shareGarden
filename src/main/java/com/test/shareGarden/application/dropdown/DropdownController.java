@@ -33,4 +33,10 @@ public class DropdownController {
     public List<MeasureUnitDto> getAllMeasureUnits() {
         return dropdownService.getAllMeasureUnits();
     }
+
+    @GetMapping("/location")
+    @Operation(summary = "Get all user locations by userId")
+    public List<LocationDto> getAllLocationsByUserId(Integer userId) {
+        return dropdownService.getAllLocationsByUserId(userId);
+    }
 }
