@@ -22,5 +22,9 @@ public class DropdownController {
         return dropdownService.getAllCategories();
     }
 
-
+    @GetMapping("/region")
+    @Operation(summary = "Get all region id's and names")
+    public List<RegionDto> getAllRegions() {
+        return dropdownService.getAllRegions();
+    }
 }
