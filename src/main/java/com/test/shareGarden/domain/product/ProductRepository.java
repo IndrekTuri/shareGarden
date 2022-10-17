@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
@@ -25,8 +26,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
             order by p.id DESC""")
     List<Product> findByKeyword(String keyword, String status);
 
-
-
+    Optional<Product> findProductByCategoryId(Integer categoryId);
 
 
 //    @Query("select p from Product p where p.sellerUser.id = ?1 order by p.id DESC")

@@ -1,14 +1,19 @@
 package com.test.shareGarden.validation;
 
+import com.test.shareGarden.domain.product.Product;
 import com.test.shareGarden.domain.user.User;
 import com.test.shareGarden.infrastructure.exception.BusinessException;
+import com.test.shareGarden.infrastructure.exception.DataNotFoundException;
 
+import java.util.List;
 import java.util.Optional;
 
 public class ValidationService {
 
     public static final String INCORRECT_REGISTER_DETAILS = "Kasutajanimi on hõivatud";
     public static final String INCORRECT_LOGIN_DETAILS = "Kasutajanimi või parool on vale";
+    public static final String PRODUCT_NOT_EXISTS = "Tooteid ei ole";
+
 
     public static void validateUserNameExists(boolean userExists, String userName) {
         if (userExists) {
@@ -20,6 +25,12 @@ public class ValidationService {
         if (user.isEmpty()) {
             throw new BusinessException(INCORRECT_LOGIN_DETAILS, "Proovi uuesti!");
 
+        }
+    }
+
+    public static void validateProductsExist(Optional<Product> product) {
+        if (product.isEmpty()) {
+            throw new DataNotFoundException(PRODUCT_NOT_EXISTS, "Vabandame selles kategoorias tooteid ei ole");
         }
     }
 }

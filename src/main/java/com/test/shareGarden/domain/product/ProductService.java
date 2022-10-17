@@ -1,10 +1,12 @@
 package com.test.shareGarden.domain.product;
 
 import com.test.shareGarden.application.product.ProductInfo;
+import com.test.shareGarden.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.test.shareGarden.application.Status.AVAILABLE;
@@ -30,6 +32,7 @@ public class ProductService {
 
     public List<ProductInfo> findProductsByCategory(Integer categoryId) {
         List<Product> products = productRepository.findByCategoryId(categoryId, AVAILABLE);
+
         return productMapper.productsToProductInfos(products);
     }
 
@@ -46,5 +49,11 @@ public class ProductService {
     public List<ProductInfo> findProductByKeyword(String keyword) {
         List<Product> products = productRepository.findByKeyword(keyword, AVAILABLE);
         return productMapper.productsToProductInfos(products);
+    }
+
+    public Product getValidProduct(Integer categoryId) {
+        Optional<Product> product = productRepository.findProductByCategoryId(categoryId);
+        ValidationService.validateProductsExist(product);
+        return product.get();
     }
 }

@@ -1,5 +1,6 @@
 package com.test.shareGarden.application.product;
 
+import com.test.shareGarden.domain.product.Product;
 import com.test.shareGarden.domain.product.ProductService;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,9 @@ public class BusinessService {
         return productService.findAllProducts();
     }
 
+    // TODO: 17.10.2022 Validate if products exists in selected category
     public List<ProductInfo> findProductsByCategory(Integer categoryId) {
+        productService.getValidProduct(categoryId);
         return productService.findProductsByCategory(categoryId);
     }
 
