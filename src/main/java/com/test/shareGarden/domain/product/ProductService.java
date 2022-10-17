@@ -32,12 +32,13 @@ public class ProductService {
 
     public List<ProductInfo> findProductsByCategory(Integer categoryId) {
         List<Product> products = productRepository.findByCategoryId(categoryId, AVAILABLE);
-
+        getValidProductsByCategoryId(categoryId);
         return productMapper.productsToProductInfos(products);
     }
 
     public List<ProductInfo> findProductsByRegion(Integer regionId) {
         List<Product> products = productRepository.findByRegionId(regionId, AVAILABLE);
+        getValidProductsByRegionId(regionId);
         return productMapper.productsToProductInfos(products);
     }
 
@@ -51,9 +52,14 @@ public class ProductService {
         return productMapper.productsToProductInfos(products);
     }
 
-    public Product getValidProduct(Integer categoryId) {
-        Optional<Product> product = productRepository.findProductByCategoryId(categoryId);
-        ValidationService.validateProductsExist(product);
-        return product.get();
+    public void getValidProductsByCategoryId(Integer categoryId) {
+        List<Product> products = productRepository.findByCategoryId(categoryId,AVAILABLE);
+        ValidationService.validateProductsExist(products);
+    }
+
+    public void getValidProductsByRegionId(Integer regionId) {
+        List<Product> products = productRepository.findByRegionId(regionId, AVAILABLE);
+        ValidationService.validateProductsExist(products);
     }
 }
+

@@ -12,7 +12,7 @@ public class ValidationService {
 
     public static final String INCORRECT_REGISTER_DETAILS = "Kasutajanimi on hõivatud";
     public static final String INCORRECT_LOGIN_DETAILS = "Kasutajanimi või parool on vale";
-    public static final String PRODUCT_NOT_EXISTS = "Tooteid ei ole";
+    public static final String PRODUCTS_NOT_EXISTS = "Tooteid ei ole";
 
 
     public static void validateUserNameExists(boolean userExists, String userName) {
@@ -28,9 +28,9 @@ public class ValidationService {
         }
     }
 
-    public static void validateProductsExist(Optional<Product> product) {
-        if (product.isEmpty()) {
-            throw new DataNotFoundException(PRODUCT_NOT_EXISTS, "Vabandame selles kategoorias tooteid ei ole");
+    public static void validateProductsExist(List<Product> products) {
+        if (products.isEmpty()) {
+            throw new DataNotFoundException(PRODUCTS_NOT_EXISTS, "Vabandame, kahjuks ei leitud ühtegi toodet");
         }
     }
 }

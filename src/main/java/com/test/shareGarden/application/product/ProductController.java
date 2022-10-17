@@ -53,7 +53,6 @@ public class ProductController {
 //    }
 
 
-//     TODO: 12.10.2022 findByKeyword
 //     TODO: 12.10.2022 findByBuyerId
 
     @GetMapping("/keyword")
