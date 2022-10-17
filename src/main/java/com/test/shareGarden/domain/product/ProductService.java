@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.test.shareGarden.application.Status.AVAILABLE;
@@ -49,6 +48,7 @@ public class ProductService {
 
     public List<ProductInfo> findProductByKeyword(String keyword) {
         List<Product> products = productRepository.findByKeyword(keyword, AVAILABLE);
+        getValidProductsByKeyword(keyword);
         return productMapper.productsToProductInfos(products);
     }
 
@@ -59,6 +59,11 @@ public class ProductService {
 
     public void getValidProductsByRegionId(Integer regionId) {
         List<Product> products = productRepository.findByRegionId(regionId, AVAILABLE);
+        ValidationService.validateProductsExist(products);
+    }
+
+    public void getValidProductsByKeyword(String keyword) {
+        List<Product> products = productRepository.findByKeyword(keyword, AVAILABLE);
         ValidationService.validateProductsExist(products);
     }
 }
