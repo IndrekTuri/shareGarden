@@ -11,6 +11,6 @@ import java.io.Serializable;
  */
 @Data
 public class RegionDto implements Serializable {
-    private Integer id;
-    private String regionName;
+    private Integer regionId;
+    private String name;
 }

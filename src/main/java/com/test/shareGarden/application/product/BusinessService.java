@@ -20,12 +20,10 @@ public class BusinessService {
         return productService.findAllProducts();
     }
 
-    // TODO: 17.10.2022 Validate if products exists in selected category
     public List<ProductInfo> findProductsByCategory(Integer categoryId) {
         return productService.findProductsByCategory(categoryId);
     }
 
-    // TODO: 17.10.2022 Validate if products exists in selected category
     public List<ProductInfo> findProductsByRegion(Integer regionId) {
         return productService.findProductsByRegion(regionId);
     }
@@ -34,9 +32,6 @@ public class BusinessService {
         return productService.findProductByUser(userId);
     }
 
-//    public List<ProductInfo> findProductByBuyer(Integer buyerId) {
-//        return productService.findProductByBuyer(buyerId);
-//    }
 
     public List<ProductInfo> findProductByKeyword(String keyword) {
         return productService.findProductByKeyword(keyword);

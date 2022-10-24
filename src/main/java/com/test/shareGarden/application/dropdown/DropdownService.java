@@ -38,7 +38,6 @@ public class DropdownService {
         return measureUnitService.getAllMeasureUnits();
 
     }
-
     public List<LocationDto> getAllLocationsByUserId(Integer userId) {
         return locationService.getAllLocationsByUserId(userId);
     }
