@@ -37,13 +37,16 @@ public class ContactController {
 
     // TODO: 25.10.2022  update userprofile firstName, lastname and phone number
     @PatchMapping("/contact")
-    @Operation(summary = "Add/update user firstname, lastname or phone number")
+    @Operation(summary = "Add/update user firstname, lastname or phone number by contactId")
     public void updateContactDetail(@RequestBody ContactRequest request) {
         userService.updateContactDetail(request);
     }
 
 
     // TODO: 25.10.2022  update user address and regionId by locationId
-
-
+    @PatchMapping("/address")
+    @Operation(summary = "Add/update user address and regionId by locationId")
+    public void updateContactAddress(@RequestBody LocationResponse request) {
+        userService.updateContactAddress(request);
+    }
 }

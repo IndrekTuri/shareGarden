@@ -98,4 +98,13 @@ public class UserService {
         contact.setMobile(request.getMobile());
         contactRepository.save(contact);
     }
+
+    public void updateContactAddress(LocationResponse request) {
+        Location location = locationRepository.findById(request.getLocationId()).get();
+        location.setName(request.getLocationName());
+        location.setAddress(request.getAddress());
+        Region region = regionRepository.findById(request.getRegionId()).get();
+        location.setRegion(region);
+        locationRepository.save(location);
+    }
 }
