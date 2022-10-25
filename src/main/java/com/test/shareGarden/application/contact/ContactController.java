@@ -35,8 +35,15 @@ public class ContactController {
         userService.addAddress(request);
     }
 
-    // TODO: 25.10.2022  add/change to userprofile firstName, lastname and phone number
-    // TODO: 25.10.2022  add/change user address and regionId by locationId
+    // TODO: 25.10.2022  update userprofile firstName, lastname and phone number
+    @PatchMapping("/contact")
+    @Operation(summary = "Add/update user firstname, lastname or phone number")
+    public void updateContactDetail(@RequestBody ContactRequest request) {
+        userService.updateContactDetail(request);
+    }
+
+
+    // TODO: 25.10.2022  update user address and regionId by locationId
 
 
 }

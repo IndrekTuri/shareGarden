@@ -1,6 +1,7 @@
 package com.test.shareGarden.domain.user;
 
 import com.test.shareGarden.application.contact.ContactInfo;
+import com.test.shareGarden.application.contact.ContactRequest;
 import com.test.shareGarden.application.contact.LocationRequest;
 import com.test.shareGarden.application.contact.LocationResponse;
 import com.test.shareGarden.domain.user.contact.Contact;
@@ -88,5 +89,13 @@ public class UserService {
         location.setContact(contact);
         location.setRegion(region);
         locationRepository.save(location);
+    }
+
+    public void updateContactDetail(ContactRequest request) {
+        Contact contact = contactRepository.findById(request.getContactId()).get();
+        contact.setFirstName(request.getFirstName());
+        contact.setLastName(request.getLastName());
+        contact.setMobile(request.getMobile());
+        contactRepository.save(contact);
     }
 }
