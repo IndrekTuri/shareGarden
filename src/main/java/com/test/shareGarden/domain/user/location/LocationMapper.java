@@ -1,5 +1,6 @@
 package com.test.shareGarden.domain.user.location;
 
+import com.test.shareGarden.application.contact.LocationRequest;
 import com.test.shareGarden.application.contact.LocationResponse;
 import com.test.shareGarden.application.dropdown.LocationDto;
 import org.mapstruct.Mapper;
@@ -23,4 +24,10 @@ public interface LocationMapper {
     @Mapping(source = "name", target = "locationName")
     LocationResponse locationsToLocationResponse(Location locations);
     List<LocationResponse> locationsToLocationResponse(List<Location> locations);
+
+
+    @Mapping(source = "contactId", target = "contact.id")
+    @Mapping(source = "regionId", target = "region.id")
+    @Mapping(source = "locationName", target = "name")
+    Location locationRequestToLocation(LocationRequest request);
 }

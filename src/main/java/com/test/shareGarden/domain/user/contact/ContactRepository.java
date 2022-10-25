@@ -14,4 +14,6 @@ public interface ContactRepository extends JpaRepository<Contact, Integer> {
     @Query("select c from Contact c where c.user.id = ?1")
     Optional<Contact> findByUserId(Integer userId);
 
+
+
 }

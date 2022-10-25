@@ -1,6 +1,7 @@
 package com.test.shareGarden.domain.user;
 
 import com.test.shareGarden.application.contact.ContactInfo;
+import com.test.shareGarden.application.contact.LocationRequest;
 import com.test.shareGarden.application.contact.LocationResponse;
 import com.test.shareGarden.domain.user.contact.Contact;
 import com.test.shareGarden.domain.user.contact.ContactMapper;
@@ -8,6 +9,8 @@ import com.test.shareGarden.domain.user.contact.ContactRepository;
 import com.test.shareGarden.domain.user.location.Location;
 import com.test.shareGarden.domain.user.location.LocationMapper;
 import com.test.shareGarden.domain.user.location.LocationRepository;
+import com.test.shareGarden.domain.user.region.Region;
+import com.test.shareGarden.domain.user.region.RegionRepository;
 import com.test.shareGarden.domain.user.role.RoleService;
 import com.test.shareGarden.application.login.RegisterRequest;
 import com.test.shareGarden.domain.user.role.Role;
@@ -38,6 +41,9 @@ public class UserService {
 
     @Resource
     private LocationMapper locationMapper;
+
+    @Resource
+    private RegionRepository regionRepository;
 
     public User createAndAddNewUser(RegisterRequest request) {
         //Kontroll kas kasutaja on juba olemas (kasutaja nime järgi)
@@ -74,4 +80,13 @@ public class UserService {
         return locationMapper.locationsToLocationResponse(locations);
     }
 
+
+    public void addAddress(LocationRequest request) {
+        Location location = locationMapper.locationRequestToLocation(request);
+        Contact contact = contactRepository.findById(request.getContactId()).get();
+        Region region = regionRepository.findById(request.getRegionId()).get();
+        location.setContact(contact);
+        location.setRegion(region);
+        locationRepository.save(location);
+    }
 }
