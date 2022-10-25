@@ -24,10 +24,13 @@ import java.util.Optional;
 
 @Service
 public class UserService {
+
     @Resource
     private UserRepository userRepository;
+
     @Resource
     private UserMapper userMapper;
+
     @Resource
     private RoleService roleService;
 
@@ -80,7 +83,6 @@ public class UserService {
         List<Location> locations = locationRepository.findContactLocationsById(contactId);
         return locationMapper.locationsToLocationResponse(locations);
     }
-
 
     public void addAddress(LocationRequest request) {
         Location location = locationMapper.locationRequestToLocation(request);
