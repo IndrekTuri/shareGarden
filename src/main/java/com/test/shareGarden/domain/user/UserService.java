@@ -1,9 +1,13 @@
 package com.test.shareGarden.domain.user;
 
 import com.test.shareGarden.application.contact.ContactInfo;
+import com.test.shareGarden.application.contact.LocationResponse;
 import com.test.shareGarden.domain.user.contact.Contact;
 import com.test.shareGarden.domain.user.contact.ContactMapper;
 import com.test.shareGarden.domain.user.contact.ContactRepository;
+import com.test.shareGarden.domain.user.location.Location;
+import com.test.shareGarden.domain.user.location.LocationMapper;
+import com.test.shareGarden.domain.user.location.LocationRepository;
 import com.test.shareGarden.domain.user.role.RoleService;
 import com.test.shareGarden.application.login.RegisterRequest;
 import com.test.shareGarden.domain.user.role.Role;
@@ -11,6 +15,7 @@ import com.test.shareGarden.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,6 +32,12 @@ public class UserService {
 
     @Resource
     private ContactMapper contactMapper;
+
+    @Resource
+    private LocationRepository locationRepository;
+
+    @Resource
+    private LocationMapper locationMapper;
 
     public User createAndAddNewUser(RegisterRequest request) {
         //Kontroll kas kasutaja on juba olemas (kasutaja nime järgi)
@@ -57,4 +68,10 @@ public class UserService {
         Contact contact = contactRepository.findByUserId(userId).get();
         return contactMapper.contactToContactInfo(contact);
     }
+
+    public List<LocationResponse> findContactLocations(Integer contactId) {
+        List<Location> locations = locationRepository.findContactLocationsById(contactId);
+        return locationMapper.locationsToLocationResponse(locations);
+    }
+
 }

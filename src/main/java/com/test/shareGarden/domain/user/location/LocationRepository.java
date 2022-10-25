@@ -12,6 +12,6 @@ public interface LocationRepository extends JpaRepository<Location, Integer> {
     @Query("select l from Location l where l.contact.user.id = ?1")
     List<Location> findAllBy(Integer userId);
 
-
-
+    @Query("select l from Location l where l.contact.id = ?1")
+    List<Location> findContactLocationsById(Integer contactId);
 }
