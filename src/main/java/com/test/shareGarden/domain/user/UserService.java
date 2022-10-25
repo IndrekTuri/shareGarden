@@ -1,5 +1,9 @@
 package com.test.shareGarden.domain.user;
 
+import com.test.shareGarden.application.contact.ContactInfo;
+import com.test.shareGarden.domain.user.contact.Contact;
+import com.test.shareGarden.domain.user.contact.ContactMapper;
+import com.test.shareGarden.domain.user.contact.ContactRepository;
 import com.test.shareGarden.domain.user.role.RoleService;
 import com.test.shareGarden.application.login.RegisterRequest;
 import com.test.shareGarden.domain.user.role.Role;
@@ -17,6 +21,12 @@ public class UserService {
     private UserMapper userMapper;
     @Resource
     private RoleService roleService;
+
+    @Resource
+    private ContactRepository contactRepository;
+
+    @Resource
+    private ContactMapper contactMapper;
 
     public User createAndAddNewUser(RegisterRequest request) {
         //Kontroll kas kasutaja on juba olemas (kasutaja nime järgi)
@@ -41,5 +51,10 @@ public class UserService {
         ValidationService.validateUserExists(user);
         //Kui olemas tagastame LoginServicesse
         return user.get();
+    }
+
+    public ContactInfo findContactDetail(Integer userId) {
+        Contact contact = contactRepository.findByUserId(userId).get();
+        return contactMapper.contactToContactInfo(contact);
     }
 }
